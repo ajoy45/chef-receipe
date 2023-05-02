@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import SingleRecipe from './SingleRecipe';
 
 const Recipe = () => {
     const recipe = useLoaderData();
@@ -68,8 +69,13 @@ const Recipe = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                
+            <div className='grid grid-cols-1 md:grid-cols-3'>
+                {
+                    number_of_recipes.map(recipe=><SingleRecipe
+                       key={recipe.id}
+                       recipe={recipe}
+                    ></SingleRecipe>)
+                }
             </div>
         </div>
     );
