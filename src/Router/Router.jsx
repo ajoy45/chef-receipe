@@ -8,6 +8,8 @@ import Home from '../pages/Home/Home';
 import Recipe from '../pages/Recipe';
 import ErrorPage from '../pages/ErrorPage';
 import Blog from '../pages/Blog';
+import Register from '../pages/Register';
+import Login from '../pages/Login';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -22,6 +24,16 @@ import Blog from '../pages/Blog';
         {
           path: "blog",
           element:<Blog></Blog> ,
+          
+        },
+        {
+          path: "register",
+          element:<Register></Register> ,
+          
+        },
+        {
+          path: "login",
+          element:<Login></Login> ,
           
         },
         {
