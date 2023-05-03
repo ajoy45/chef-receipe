@@ -7,6 +7,7 @@ import App from '../App';
 import Home from '../pages/Home/Home';
 import Recipe from '../pages/Recipe';
 import ErrorPage from '../pages/ErrorPage';
+import Blog from '../pages/Blog';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -17,6 +18,11 @@ import ErrorPage from '../pages/ErrorPage';
           path: "/",
           element: <Home></Home>,
           loader:()=>fetch('http://localhost:3000/data')
+        },
+        {
+          path: "blog",
+          element:<Blog></Blog> ,
+          
         },
         {
           path: "recipe/:id",
