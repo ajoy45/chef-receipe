@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { authContext } from '../AuthProvider';
 
 const Login = () => {
+    const{signIn,isLoading}=useContext(authContext)
+    const[email,setEmail]=useState('');
+    const[password,setPassword]=useState('');
+    // console.log(email,password)
+    if(isLoading){
+        return<h1>loading...</h1>
+    }
+    
+    const handelSinIn=(e)=>{
+        e.preventDefault()
+        signIn(email,password)
+        .then(result => {
+            // Signed in 
+            const logInUser = result.user;
+            console.log(logInUser)
+            
+                
+            
+            
+          })
+          .catch((error) => {
+            console.log(error)
+          });
+    }
+   
     return (
         <div>
             <div className='flex justify-center my-24'>
@@ -9,19 +35,23 @@ const Login = () => {
                 <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
                     <h1 className='text-center text-3xl font-bold'>Please Login</h1>
                     <div className="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
-                        <form>
+                        <form onSubmit={handelSinIn}>
                             
                             <div className="mb-6">
                                 <input
                                     type="email"
+                                    name='email'
                                     placeholder="Your Email"
+                                    onChange={(e)=>setEmail(e.target.value)}
                                     className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                                 />
                             </div>
                             <div className="mb-6">
                                 <input
                                     type="password"
-                                    placeholder="Your Phone"
+                                    placeholder="Your Password"
+                                    name='password'
+                                    onChange={(e)=>setPassword(e.target.value)}
                                     className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                                 />
                             </div>
@@ -29,7 +59,17 @@ const Login = () => {
                              <div className='mb-5'>
                                   New ?<Link className='cursor-pointer text-blue-500' to='/register'> Go to Register </Link>
                              </div>
+                           
                             <div className='mb-5'>
+                                <input
+                                    type="submit"
+                                    value='Login'
+                                    className="bg-primary border-primary w-full rounded border p-3 text-white transition hover:bg-opacity-90"
+                                />
+
+                            </div>
+                        </form>
+                        <div className='mb-5'>
                                 <button
                                     className="bg-purple-300 border-0 w-full rounded  p-3 text-white transition hover:bg-opacity-90"
                                 > Google SignIn </button>
@@ -41,15 +81,6 @@ const Login = () => {
                                 > GitHub SignIn </button>
 
                             </div>
-                            <div>
-                                <input
-                                    type="submit"
-                                    value='Login'
-                                    className="bg-primary border-primary w-full rounded border p-3 text-white transition hover:bg-opacity-90"
-                                />
-
-                            </div>
-                        </form>
                         <div>
                             <span className="absolute -top-10 -right-9 z-[-1]">
                                 <svg

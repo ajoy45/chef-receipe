@@ -1,21 +1,57 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider';
 
 const Register = () => {
-    const {createUser}=useContext(authContext);
-    console.log(createUser)
+    const { createUser,updateUserProfile,logOut} = useContext(authContext);
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [photo, setPhoto] = useState('')
+    const navigate=useNavigate()
+    // console.log(name,email,password,photo)
+    const handelRegister = (e) => {
+        e.preventDefault()
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                logOut()
+                .then(()=>{
+                    console.log('successful logout')
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
+                navigate('/login')
+                updateUserProfile(user, name, photo)
+                .then(() => {
+                    console.log('user profile update')
+                })
+                .catch(error => {
+                    console.log(error.message)
+                })
+                 
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+    }
     return (
         <div className='flex justify-center my-24'>
 
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
                 <h1 className='text-center text-3xl font-bold'>Please Register</h1>
                 <div className="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
-                    <form>
+                    <form onSubmit={handelRegister}>
                         <div className="mb-6">
                             <input
                                 type="text"
                                 placeholder="Your Name"
+                                name='name'
+                                required
+                                onChange={(e) => setName(e.target.value)}
                                 className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                             />
                         </div>
@@ -23,13 +59,18 @@ const Register = () => {
                             <input
                                 type="email"
                                 placeholder="Your Email"
+                                name='email'
+                                required
+                                onChange={(e) => setEmail(e.target.value)}
                                 className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                             />
                         </div>
                         <div className="mb-6">
                             <input
                                 type="password"
-                                placeholder="Your Phone"
+                                name='password'
+                                placeholder="Your Password"
+                                onChange={(e) => setPassword(e.target.value)}
                                 className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                             />
                         </div>
@@ -37,6 +78,8 @@ const Register = () => {
                             <input
                                 type="text"
                                 placeholder="Photo URL"
+                                name='text'
+                                onChange={(e) => setPhoto(e.target.value)}
                                 className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                             />
                         </div>
