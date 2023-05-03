@@ -6,10 +6,12 @@ import {
 import App from '../App';
 import Home from '../pages/Home/Home';
 import Recipe from '../pages/Recipe';
+import ErrorPage from '../pages/ErrorPage';
   const router = createBrowserRouter([
     {
       path: "/",
       element: <App></App>,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",

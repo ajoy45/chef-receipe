@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from './Banner';
 import { useLoaderData } from 'react-router-dom';
 import ChefCard from './ChefCard';
 import { TbChefHat } from "react-icons/tb";
 const Home = () => {
+    const [isLoading,setIsLoading]=useState(true);
     const datas = useLoaderData();
     // console.log(data)
+    useEffect(() => {
+        // simulate loading data
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+      }, []);
+    if(isLoading){
+        
+        return <progress className="progress w-56"></progress>
+    }
     return (
         <div className='pb-16'>
             <Banner></Banner>
