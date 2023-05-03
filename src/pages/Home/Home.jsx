@@ -7,7 +7,7 @@ const Home = () => {
     const datas = useLoaderData();
     // console.log(data)
     return (
-        <div className='py-16'>
+        <div className='pb-16'>
             <Banner></Banner>
             <div className='text-center py-9'>
                 <h1 className='text-3xl font-bold mt-24'>WELCOME TO INDIAN CHEF</h1>

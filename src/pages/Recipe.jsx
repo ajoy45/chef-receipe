@@ -69,7 +69,10 @@ const Recipe = () => {
                     </div>
                 </div>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-3'>
+             <div>
+                <h1 className='text-center text-bold text-3xl '>MY <span className='text-purple-500 italic'>Recipe</span></h1>
+             </div>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-5 px-12 py-16 '>
                 {
                     number_of_recipes.map(recipe=><SingleRecipe
                        key={recipe.id}

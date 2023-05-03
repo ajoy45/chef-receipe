@@ -11,17 +11,24 @@ const SingleRecipe = ({ recipe }) => {
            }
         </span>
     })
+    const listItems = []
+    for(const fruit of ingredients){
+        listItems.push(<li >{fruit}</li>);
+    }
     return (
         <div>
-            <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card w-full bg-gray-300 shadow-xl">
 
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">Name:{recipe_name}</h2>
                     <h2 className="card-title">Cooking:{cooking_method}</h2>
                     <h2 className="card-title">Rating:{ratingStar}</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <h2 className="card-title">Ingredients</h2>
+                    <ul>
+                        {listItems}
+                    </ul>
                     <div className="card-actions">
-                        <button className="btn btn-primary">Buy Now</button>
+                        <button className="btn bg-red-500 border-0"> Favorite</button>
                     </div>
                 </div>
             </div>
