@@ -1,6 +1,7 @@
 import React from 'react';
 import img1 from '../../src/assets/404_page_cover.jpg'
 import Header from '../shared/Header';
+import Footer from '../shared/Footer';
 const ErrorPage = () => {
     return (
         <>
@@ -9,6 +10,7 @@ const ErrorPage = () => {
 
                 <img src={img1} alt="" />
             </div>
+            <Footer></Footer>
         </>
     );
 };
