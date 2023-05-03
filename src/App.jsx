@@ -5,12 +5,13 @@ import Header from './shared/Header'
 import Footer from './shared/Footer'
 
 function App() {
-
-
+ 
   return (
     <>
-      <Header></Header>
-      <Outlet></Outlet>
+      <Header ></Header>
+      <div className='main'>
+        <Outlet ></Outlet>
+      </div>
       <Footer></Footer>
     </>
   )

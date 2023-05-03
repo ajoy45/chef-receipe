@@ -18,9 +18,7 @@ const Contact = () => {
                                     GET IN TOUCH WITH US
                                 </h2>
                                 <p className="text-body-color mb-9 text-base leading-relaxed">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim adiqua
-                                    minim veniam quis nostrud exercitation ullamco
+                                Indian Chef Take-Out Express Motto is to bring to your home the aroma of India's rich culture, flavor, and culinary heritage. The eatery features selections of Indian meals to choose from and is the best choice for tasty Indian dishes. They come up with great and flavorful meals at worth-able prices, with outstanding experiences for patrons of all ages and historic towns like Umatilla. Whether you're craving a quick bite or looking to treat yourself to a delicious meal, you can order your Indian Chef Take-Out Express favorites for takeaway or delivery, available on all platforms Uber Eats, Doordash, Grubhub and Toast.
                                 </p>
                                 <div className="mb-8 flex w-full max-w-[370px]">
                                     <div
