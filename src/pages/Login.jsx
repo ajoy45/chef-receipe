@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authContext } from '../AuthProvider';
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup,GithubAuthProvider } from "firebase/auth";
 import auth from '../firebase/firebase.config';
 const Login = () => {
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
     const { signIn, isLoading } = useContext(authContext)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,6 +32,17 @@ const Login = () => {
     }
    const handelGoogleLogin=()=>{
     signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      const user = result.user;
+      console.log(user)
+    })
+    .catch((error) => {
+       console.log(error)
+      
+    });
+   }
+   const handelGithubLogin=()=>{
+    signInWithPopup(auth, githubProvider)
     .then((result) => {
       const user = result.user;
       console.log(user)
@@ -88,7 +100,7 @@ const Login = () => {
 
                         </div>
                         <div className='mb-5'>
-                            <button
+                            <button onClick={handelGithubLogin}
                                 className="bg-purple-300 border-0 w-full rounded  p-3 text-white transition hover:bg-opacity-90"
                             > GitHub SignIn </button>
 
