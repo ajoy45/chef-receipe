@@ -3,6 +3,7 @@ import Banner from './Banner';
 import { useLoaderData } from 'react-router-dom';
 import ChefCard from './ChefCard';
 import { TbChefHat } from "react-icons/tb";
+import Team from './Team';
 const Home = () => {
     const [isLoading,setIsLoading]=useState(true);
     const datas = useLoaderData();
@@ -36,6 +37,7 @@ const Home = () => {
                 ></ChefCard>)
             }
             </div>
+            <Team></Team>
         </div>
     );
 };
