@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaStar,FaStarHalfAlt } from "react-icons/fa";
 import { AiOutlineStar } from "react-icons/ai";
+import {toast } from 'react-toastify';
 const SingleRecipe = ({ recipe }) => {
+    const[isTrue,setIsTrue]=useState(false)
     const {recipe_name,cooking_method,rating,ingredients}=recipe;
    const ratingStar= Array.from({length:5},(e,index)=>{
         let number=index+0.5;
@@ -14,6 +16,10 @@ const SingleRecipe = ({ recipe }) => {
     const listItems = []
     for(const fruit of ingredients){
         listItems.push(<li >{fruit}</li>);
+    }
+    const handelFavorite=()=>{
+        toast.success('recipe is your favorite');
+        setIsTrue(!isTrue)
     }
     return (
         <div>
@@ -28,7 +34,7 @@ const SingleRecipe = ({ recipe }) => {
                         {listItems}
                     </ul>
                     <div className="card-actions">
-                        <button className="btn bg-red-500 border-0"> Favorite</button>
+                        <button disabled={isTrue}onClick={handelFavorite} className="btn bg-red-500 border-0"> Favorite</button>
                     </div>
                 </div>
             </div>
