@@ -3,39 +3,41 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider';
 
 const Register = () => {
-    const { createUser,updateUserProfile,logOut} = useContext(authContext);
+    const { createUser,updateUserProfile} = useContext(authContext);
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [photo, setPhoto] = useState('')
+    const[error,setError]=useState('')
     const navigate=useNavigate()
-    // console.log(name,email,password,photo)
+    
     const handelRegister = (e) => {
         e.preventDefault()
+       if(email,password){
         createUser(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user)
-                logOut()
-                .then(()=>{
-                    console.log('successful logout')
-                })
-                .catch(error=>{
-                    console.log(error)
-                })
-                navigate('/login')
-                updateUserProfile(user, name, photo)
-                .then(() => {
-                    console.log('user profile update')
-                })
-                .catch(error => {
-                    console.log(error.message)
-                })
-                 
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+            
+            navigate('/login')
+            updateUserProfile(user, name, photo)
+            .then(() => {
+                console.log('user profile update')
             })
             .catch(error => {
-                console.log(error)
+                console.log(error.message)
+                
             })
+             
+        })
+        .catch(error => {
+            console.log(error)
+            setError(error.message)
+        })
+       }
+       else{
+        setError('Do not empty email and password')
+       }
 
     }
     return (
@@ -60,7 +62,7 @@ const Register = () => {
                                 type="email"
                                 placeholder="Your Email"
                                 name='email'
-                                required
+                               
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
                             />
@@ -86,6 +88,9 @@ const Register = () => {
                         <div className='mb-5'>
                             Already Have An Account?<Link className='cursor-pointer text-blue-500' to='/login'> Go to Login </Link>
                         </div>
+                        
+                         <h1 className='text-red-500'> {error}</h1>
+                        
                         <div>
                             <input
                                 type="submit"

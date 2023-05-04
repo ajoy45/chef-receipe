@@ -14,6 +14,7 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
     const logOut=()=>{
+        setIsLoading(true)
        return signOut(auth)
     }
     useEffect(()=>{

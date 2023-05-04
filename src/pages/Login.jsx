@@ -1,18 +1,24 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider';
 import { GoogleAuthProvider, signInWithPopup,GithubAuthProvider } from "firebase/auth";
 import auth from '../firebase/firebase.config';
 const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
-    const { signIn, isLoading } = useContext(authContext)
+    const { signIn, isLoading,user } = useContext(authContext)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const[error,setError]=useState('');
+    const navigate=useNavigate();
+    let location = useLocation();
+    // console.log(location)
+    const from = location.state?.from?.pathname || "/";
+    
     // console.log(email,password)
-    if (isLoading) {
-        return <h1>loading...</h1>
-    }
+    // if (isLoading) {
+    //     return <h1>loading...</h1>
+    // }
 
     const handelSinIn = (e) => {
         e.preventDefault()
@@ -21,13 +27,11 @@ const Login = () => {
                 // Signed in 
                 const logInUser = result.user;
                 console.log(logInUser)
-
-
-
-
+                navigate(from, { replace: true })
             })
             .catch((error) => {
                 console.log(error)
+                setError(error.message)
             });
     }
    const handelGoogleLogin=()=>{
@@ -83,7 +87,7 @@ const Login = () => {
                             <div className='mb-5'>
                                 New ?<Link className='cursor-pointer text-blue-500' to='/register'> Go to Register </Link>
                             </div>
-
+                             <h2 className='text-red-500'>{error}</h2>
                             <div className='mb-5'>
                                 <input
                                     type="submit"

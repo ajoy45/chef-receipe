@@ -3,14 +3,23 @@ import { Link, NavLink } from 'react-router-dom';
 import { authContext } from '../AuthProvider';
 
 const Header = () => {
-    const { user,isLoading } = useContext(authContext)
+    const { user,isLoading,logOut } = useContext(authContext)
     const navLinkStyle = ({ isActive }) => {
         return {
             textDecoration: isActive ? "underline" : "none",
             color: isActive ? "blue" : "black"
         }
     }
-
+    const handelLogOut=()=>{
+        logOut()
+            .then(()=>{
+                console.log('successful logout')
+            })
+            .catch(error=>{
+                console.log(error)
+               
+            })
+    }
     return (
         <div className='px-12'>
             <div className="navbar bg-base-100">
@@ -32,6 +41,7 @@ const Header = () => {
                         <NavLink className='mr-3' style={navLinkStyle} to='/'><a>Home</a></NavLink>
                         <NavLink className='mr-3' style={navLinkStyle} to='/blog'><a>Blog</a></NavLink>
                         <NavLink style={navLinkStyle} to='/register'><a>Register</a></NavLink>
+                        <button onClick={handelLogOut} className='ml-4' ><a>Logout</a></button>
                     </ul>
                 </div>
                 {
@@ -45,7 +55,7 @@ const Header = () => {
                             <Link to='/login' className="btn">Login</Link>
                         </div>
                 }
-
+                  
 
             </div>
 

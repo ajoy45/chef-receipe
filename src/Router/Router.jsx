@@ -10,6 +10,7 @@ import ErrorPage from '../pages/ErrorPage';
 import Blog from '../pages/Blog';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
+import RequireAuth from '../shared/RequireAuth';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -38,7 +39,9 @@ import Login from '../pages/Login';
         },
         {
           path: "recipe/:id",
-          element: <Recipe></Recipe>,
+          element: <RequireAuth>
+            <Recipe></Recipe>
+          </RequireAuth>,
           loader:({params})=>fetch(`http://localhost:3000/data/${params.id}`)
         }
       ]
