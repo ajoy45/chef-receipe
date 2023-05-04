@@ -20,7 +20,7 @@ import RequireAuth from '../shared/RequireAuth';
         {
           path: "/",
           element: <Home></Home>,
-          loader:()=>fetch('http://localhost:3000/data')
+          loader:()=>fetch('https://assingement10-server-ajoy45.vercel.app/data')
         },
         {
           path: "blog",
@@ -42,7 +42,7 @@ import RequireAuth from '../shared/RequireAuth';
           element: <RequireAuth>
             <Recipe></Recipe>
           </RequireAuth>,
-          loader:({params})=>fetch(`http://localhost:3000/data/${params.id}`)
+          loader:({params})=>fetch(`https://assingement10-server-ajoy45.vercel.app/data/${params.id}`)
         }
       ]
       

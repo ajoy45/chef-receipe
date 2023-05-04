@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import SingleRecipe from './SingleRecipe';
-
+import LazyLoad from 'react-lazy-load';
 const Recipe = () => {
     const recipe = useLoaderData();
     const { chef_picture, chef_name, description, likes, years_of_experience, number_of_recipes } = recipe
@@ -11,11 +11,14 @@ const Recipe = () => {
                 <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
                     <div className="flex flex-col max-w-screen-lg overflow-hidden bg-white border rounded shadow-sm lg:flex-row sm:mx-auto">
                         <div className="relative lg:w-1/2">
+                            <LazyLoad height={762} width={400} threshold={0.95}>
                             <img
                                 src={chef_picture}
                                 alt=""
                                 className="object-cover w-full lg:absolute h-80 lg:h-full"
                             />
+                            </LazyLoad>
+                            
                             <svg
                                 className="absolute top-0 right-0 hidden h-full text-white lg:inline-block"
                                 viewBox="0 0 20 104"
